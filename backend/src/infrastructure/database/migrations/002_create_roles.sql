@@ -1,0 +1,12 @@
+-- 002_create_roles.sql
+
+CREATE TABLE IF NOT EXISTS roles (
+  id VARCHAR(36) PRIMARY KEY,
+  nombre VARCHAR(100) UNIQUE NOT NULL,
+  descripcion TEXT,
+  permisos JSON,
+  activo BOOLEAN DEFAULT TRUE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_nombre (nombre)
+);
