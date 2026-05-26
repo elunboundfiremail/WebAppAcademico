@@ -64,7 +64,7 @@ Arquitectura limpia con capas:
 
 ## Base de datos 
 ### Tablas principales
-- usuarios: id, nombre, apellido, correo, ci, password_hash, telefono, activo, fecha_baja, creado_en
+- usuarios: id, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, correo, ci, password_hash, telefono, activo, fecha_baja, creado_en
 - roles: id, nombre
 - usuarios_roles: usuario_id, rol_id
 - carreras: id, nombre, descripcion, activo, fecha_baja
@@ -164,8 +164,10 @@ erDiagram
 
   USUARIOS {
     int id
-    string nombre
-    string apellido
+    string primer_nombre
+    string segundo_nombre
+    string apellido_paterno
+    string apellido_materno
     string correo
     string ci
     string password_hash
@@ -246,8 +248,10 @@ erDiagram
 classDiagram
   class Usuario {
     +id : int
-    +nombre : string
-    +apellido : string
+    +primer_nombre : string
+    +segundo_nombre : string
+    +apellido_paterno : string
+    +apellido_materno : string
     +correo : string
   }
   class Rol {
