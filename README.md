@@ -66,8 +66,6 @@ Arquitectura limpia con capas:
 - usuarios: id, nombre, apellido, correo, ci, password_hash, rol, telefono, activo, fecha_baja, creado_en
 - carreras: id, nombre, descripcion, activo, fecha_baja
 - materias: id, carrera_id, codigo, nombre, descripcion, activo, fecha_baja
-- estudiantes: id, usuario_id, carrera_id, activo, fecha_baja
-- docentes: id, usuario_id, activo, fecha_baja
 - cursos: id, materia_id, docente_id, periodo, gestion, cupo, activo, fecha_baja
 - curso_horarios: id, curso_id, dia_semana, hora_inicio, hora_fin, aula
 - inscripciones: id, estudiante_id, curso_id, fecha_inscripcion, estado, activo
@@ -87,6 +85,10 @@ Arquitectura limpia con capas:
 - Trigger para validar solapamiento de horarios por estudiante y docente.
 - Trigger para validar cupo antes de inscribir.
 - Procedimientos para reportes RF12.
+
+Nota de diseno: se elimina la separacion en tablas estudiantes y docentes para evitar ciclos extra.
+Se usa solo usuarios con rol, y las relaciones apuntan a usuarios. El ciclo minimo
+usuarios -> cursos -> inscripciones es funcional y no genera redundancia.
 
 ## Diagramas
 ### Diagrama de casos de uso (general)
@@ -115,13 +117,11 @@ flowchart LR
 ### Diagrama ER
 ```mermaid
 erDiagram
-  USUARIOS ||--o{ ESTUDIANTES : tiene
-  USUARIOS ||--o{ DOCENTES : tiene
   CARRERAS ||--o{ MATERIAS : incluye
   MATERIAS ||--o{ CURSOS : ofrece
-  DOCENTES ||--o{ CURSOS : dicta
+  USUARIOS ||--o{ CURSOS : dicta
   CURSOS ||--o{ CURSO_HORARIOS : tiene
-  ESTUDIANTES ||--o{ INSCRIPCIONES : realiza
+  USUARIOS ||--o{ INSCRIPCIONES : realiza
   CURSOS ||--o{ INSCRIPCIONES : recibe
   INSCRIPCIONES ||--|| CALIFICACIONES : genera
   USUARIOS ||--o{ NOTIFICACIONES : recibe
@@ -138,7 +138,7 @@ erDiagram
   }
 ```
 
-### Diagrama EER (especializacion de usuarios)
+### Diagrama de roles (usuarios)
 ```mermaid
 classDiagram
   class Usuario {
@@ -146,14 +146,8 @@ classDiagram
     +nombre
     +apellido
     +correo
-    +rol
+    +rol: estudiante|docente|administrador
   }
-  class Estudiante
-  class Docente
-  class Administrador
-  Usuario <|-- Estudiante
-  Usuario <|-- Docente
-  Usuario <|-- Administrador
 ```
 
 ### Diagramas de secuencia
