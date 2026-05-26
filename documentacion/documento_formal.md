@@ -306,33 +306,85 @@ Ver Anexo 3: Diagrama secuencia RF02 mostrando selector de rol activo.
 
 ### 7.1 Estructura del proyecto
 
+**BACKEND (Clean Architecture):**
 ```
-WebAppAcademico/
+backend/
 ├── src/
 │   ├── domain/
 │   │   ├── entities/
+│   │   │   ├── usuario.ts
+│   │   │   ├── rol.ts
+│   │   │   ├── carrera.ts
+│   │   │   ├── materia.ts
+│   │   │   ├── curso.ts
+│   │   │   ├── inscripcion.ts
+│   │   │   └── calificacion.ts
 │   │   └── repositories/
+│   │       ├── usuario.repository.ts
+│   │       ├── academico.repository.ts
+│   │       └── (interfaces)
 │   ├── application/
 │   │   ├── use-cases/
+│   │   ├── services/
 │   │   └── dtos/
 │   ├── infrastructure/
 │   │   ├── database/
-│   │   ├── repositories/
-│   │   └── migrations/
+│   │   │   ├── connection.ts
+│   │   │   └── migrations/
+│   │   └── repositories/
+│   │       ├── usuario.repository.impl.ts
+│   │       └── (implementaciones PostgreSQL)
 │   └── interfaces/
 │       ├── controllers/
 │       ├── routes/
 │       └── middleware/
-├── public/
 ├── package.json
 ├── tsconfig.json
-├── vite.config.ts (frontend)
-├── README.md
-└── dokumentacion/
-    └── documento_formal.md
+└── .env
 ```
 
-**Nota:** El repositorio contiene SOLO código fuente y README. Las carpetas `01-codigo`, `02-interno`, `03-presentacion` son SOLO para uso local del equipo, no se suben a GitHub.
+**FRONTEND (Vue 3 + Vite):**
+```
+frontend/
+├── src/
+│   ├── components/
+│   │   ├── auth/
+│   │   ├── dashboard/
+│   │   └── shared/
+│   ├── pages/
+│   │   ├── Login.vue
+│   │   ├── Dashboard.vue
+│   │   └── (por rol)
+│   ├── services/
+│   │   ├── api.ts
+│   │   └── auth.service.ts
+│   ├── stores/
+│   │   └── user.store.ts
+│   ├── App.vue
+│   └── main.ts
+├── public/
+│   └── (assets)
+├── index.html
+├── package.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+└── vite.config.ts
+```
+
+**RAÍZ DEL PROYECTO:**
+```
+WebAppAcademico/
+├── backend/          ← API REST (Clean Architecture)
+├── frontend/         ← SPA Vue 3 (UI/UX)
+├── documentacion/
+│   └── documento_formal.md
+├── README.md
+├── .gitignore
+└── (archivos config compartidos si aplica)
+```
+
+**Nota:** Las carpetas `01-codigo`, `02-interno`, `03-presentacion` son SOLO para uso local del equipo, NO se suben a GitHub. El repositorio contiene estructura limpia: `backend/`, `frontend/`, `documentacion/`, y `README.md`.
 
 ### 7.2 Organizacion del codigo
 
