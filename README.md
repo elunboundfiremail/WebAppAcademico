@@ -368,7 +368,9 @@ sequenceDiagram
   A->>BD: validar usuario
   BD-->>A: ok
   A-->>F: token y roles
-  F-->>U: acceso por rol
+  F-->>U: selector de rol activo
+  U->>F: elige rol
+  F-->>U: acceso por rol activo
 ```
 
 #### RF03 Gestion de perfiles
