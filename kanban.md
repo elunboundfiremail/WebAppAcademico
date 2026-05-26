@@ -7,9 +7,9 @@ Backlog | Por hacer | En progreso | En revision | Hecho
 | Tarea | Responsable | Fecha inicio | Fecha fin | Estado | Checkin |
 |---|---|---|---|---|---|
 | Estructura base backend (tsconfig, scripts, index, app, routes) | Dev A (Jonathan) | 2026-05-25 | 2026-05-25 | Hecho | [x] |
-| Estructura base frontend (Vue 3 + TS) | Dev B (Diego) | 2026-05-26 | 2026-05-26 | Por hacer | [ ] |
-| Entidades y repositorios base | Dev C (Maik) | 2026-05-26 | 2026-05-26 | Por hacer | [ ] |
-| Estructura reportes RF12 | Dev D (Cristian) | 2026-05-26 | 2026-05-26 | Por hacer | [ ] |
+| Estructura base frontend (Vue 3 + TS) | Dev B (Diego) | 2026-05-26 | 2026-05-26 | Por hacer | [X] |
+| Entidades y repositorios base | Dev C (Maik) | 2026-05-26 | 2026-05-26 | Por hacer | [X] |
+| Estructura reportes RF12 | Dev D (Cristian) | 2026-05-26 | 2026-05-26 | Por hacer | [X] |
 | Registro y login | Dev A (Jonathan) | 2026-05-27 | 2026-05-27 | Por hacer | [ ] |
 | Perfil y cambio de contrasena | Dev A (Jonathan) | 2026-05-28 | 2026-05-28 | Por hacer | [ ] |
 | Roles y cierre de sesion | Dev A (Jonathan) | 2026-05-29 | 2026-05-29 | Por hacer | [ ] |
