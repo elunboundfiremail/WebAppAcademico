@@ -243,7 +243,7 @@ erDiagram
   }
 ```
 
-### Diagrama EER (usuarios y roles)
+### Diagrama EER (completo)
 ```mermaid
 classDiagram
   class Usuario {
@@ -253,6 +253,12 @@ classDiagram
     +apellido_paterno : string
     +apellido_materno : string
     +correo : string
+    +ci : string
+    +password_hash : string
+    +telefono : string
+    +activo : boolean
+    +fecha_baja : date
+    +creado_en : datetime
   }
   class Rol {
     +id : int
@@ -264,8 +270,74 @@ classDiagram
     +fecha_asignacion : datetime
     +activo : boolean
   }
+  class Carrera {
+    +id : int
+    +nombre : string
+    +descripcion : string
+    +activo : boolean
+    +fecha_baja : date
+  }
+  class Materia {
+    +id : int
+    +carrera_id : int
+    +codigo : string
+    +nombre : string
+    +descripcion : string
+    +activo : boolean
+    +fecha_baja : date
+  }
+  class Curso {
+    +id : int
+    +materia_id : int
+    +docente_id : int
+    +periodo : string
+    +gestion : string
+    +cupo : int
+    +activo : boolean
+    +fecha_baja : date
+  }
+  class CursoHorario {
+    +id : int
+    +curso_id : int
+    +dia_semana : string
+    +hora_inicio : time
+    +hora_fin : time
+    +aula : string
+  }
+  class Inscripcion {
+    +id : int
+    +estudiante_id : int
+    +curso_id : int
+    +fecha_inscripcion : datetime
+    +estado : string
+    +activo : boolean
+  }
+  class Calificacion {
+    +id : int
+    +inscripcion_id : int
+    +nota : decimal
+    +fecha_registro : datetime
+    +observacion : string
+  }
+  class Notificacion {
+    +id : int
+    +usuario_id : int
+    +titulo : string
+    +mensaje : string
+    +leido : boolean
+    +creado_en : datetime
+  }
+
   Usuario "1" -- "0..*" UsuarioRol : tiene
   Rol "1" -- "0..*" UsuarioRol : asigna
+  Carrera "1" -- "0..*" Materia : incluye
+  Materia "1" -- "0..*" Curso : ofrece
+  Usuario "1" -- "0..*" Curso : dicta
+  Curso "1" -- "0..*" CursoHorario : tiene
+  Usuario "1" -- "0..*" Inscripcion : realiza
+  Curso "1" -- "0..*" Inscripcion : recibe
+  Inscripcion "1" -- "0..1" Calificacion : genera
+  Usuario "1" -- "0..*" Notificacion : recibe
 ```
 
 ### Diagramas de secuencia
