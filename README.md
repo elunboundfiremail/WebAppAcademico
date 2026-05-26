@@ -48,6 +48,12 @@ Nota importante: el alumno no registra notas, solo consulta sus calificaciones.
 - Visual Studio Code
 - Chrome o Edge
 
+## Clonado del repositorio
+```bash
+git clone https://github.com/elunboundfiremail/WebAppAcademico
+cd WebAppAcademico
+```
+
 ## Arquitectura
 Arquitectura limpia con capas:
 - domain: entidades y reglas
@@ -311,4 +317,3 @@ sequenceDiagram
 - Commits y pushes los realiza cada integrante con su usuario.
 - No usar "Co-authored-by: Copilot" en los commits.
 - La lista de contributors la genera GitHub segun los commits en el repo.
-
