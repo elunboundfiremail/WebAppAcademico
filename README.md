@@ -498,8 +498,3 @@ sequenceDiagram
   A-->>F: ok
   F-->>U: sesion cerrada
 ```
-
-## Politica de contribucion
-- Commits y pushes los realiza cada integrante con su usuario.
-- No usar "Co-authored-by: Copilot" en los commits.
-- La lista de contributors la genera GitHub segun los commits en el repo.
