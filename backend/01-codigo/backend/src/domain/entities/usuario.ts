@@ -1,8 +1,0 @@
-export interface Usuario {
-  id: number;
-  nombre: string;
-  correo: string;
-  contrasena: string;
-  rol: string;
-  esta_activo: boolean;
-}
