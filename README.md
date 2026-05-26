@@ -98,54 +98,54 @@ es funcional y no genera redundancia porque solo hay claves foraneas.
 ## Diagramas
 ### Diagrama de casos de uso (general)
 ```mermaid
-usecaseDiagram
-  actor Estudiante
-  actor Docente
-  actor Administrador
+flowchart LR
+  E[Estudiante]
+  D[Docente]
+  A[Administrador]
 
-  usecase UC1 as "RF01 Registro de usuarios con rol"
-  usecase UC2 as "RF02 Inicio de sesion y control por rol"
-  usecase UC3 as "RF03 Gestion de perfiles y cambio de contrasena"
-  usecase UC4 as "RF04 Gestion de cursos"
-  usecase UC5 as "RF05 Inscripcion a cursos sin duplicidad"
-  usecase UC6 as "RF06 Visualizacion de cursos por usuario"
-  usecase UC7 as "RF07 Registro y visualizacion de calificaciones"
-  usecase UC8 as "RF08 Dashboard por rol"
-  usecase UC9 as "RF09 Gestion de usuarios por administrador"
-  usecase UC10 as "RF10 Notificaciones"
-  usecase UC11 as "RF11 Cierre de sesion"
-  usecase UC12 as "RF12 Reportes PDF y Excel por rol"
+  UC1((RF01 Registro de usuarios con rol))
+  UC2((RF02 Inicio de sesion y control por rol))
+  UC3((RF03 Gestion de perfiles y cambio de contrasena))
+  UC4((RF04 Gestion de cursos))
+  UC5((RF05 Inscripcion a cursos sin duplicidad))
+  UC6((RF06 Visualizacion de cursos por usuario))
+  UC7((RF07 Registro y visualizacion de calificaciones))
+  UC8((RF08 Dashboard por rol))
+  UC9((RF09 Gestion de usuarios por administrador))
+  UC10((RF10 Notificaciones))
+  UC11((RF11 Cierre de sesion))
+  UC12((RF12 Reportes PDF y Excel por rol))
 
-  Estudiante --> UC1
-  Estudiante --> UC2
-  Estudiante --> UC3
-  Estudiante --> UC5
-  Estudiante --> UC6
-  Estudiante --> UC7
-  Estudiante --> UC8
-  Estudiante --> UC10
-  Estudiante --> UC11
-  Estudiante --> UC12
+  E --> UC1
+  E --> UC2
+  E --> UC3
+  E --> UC5
+  E --> UC6
+  E --> UC7
+  E --> UC8
+  E --> UC10
+  E --> UC11
+  E --> UC12
 
-  Docente --> UC2
-  Docente --> UC3
-  Docente --> UC6
-  Docente --> UC7
-  Docente --> UC8
-  Docente --> UC10
-  Docente --> UC11
-  Docente --> UC12
+  D --> UC2
+  D --> UC3
+  D --> UC6
+  D --> UC7
+  D --> UC8
+  D --> UC10
+  D --> UC11
+  D --> UC12
 
-  Administrador --> UC1
-  Administrador --> UC2
-  Administrador --> UC3
-  Administrador --> UC4
-  Administrador --> UC6
-  Administrador --> UC8
-  Administrador --> UC9
-  Administrador --> UC10
-  Administrador --> UC11
-  Administrador --> UC12
+  A --> UC1
+  A --> UC2
+  A --> UC3
+  A --> UC4
+  A --> UC6
+  A --> UC8
+  A --> UC9
+  A --> UC10
+  A --> UC11
+  A --> UC12
 ```
 
 ### Diagrama ER
