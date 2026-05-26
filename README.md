@@ -262,8 +262,6 @@ classDiagram
   }
   Usuario "1" -- "0..*" UsuarioRol : tiene
   Rol "1" -- "0..*" UsuarioRol : asigna
-  UsuarioRol "0..*" -- "1" Usuario : fk usuario_id
-  UsuarioRol "0..*" -- "1" Rol : fk rol_id
 ```
 
 ### Diagramas de secuencia
