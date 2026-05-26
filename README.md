@@ -243,7 +243,7 @@ erDiagram
   }
 ```
 
-### Diagrama EER (completo)
+### Diagrama EER
 ```mermaid
 classDiagram
   class Usuario {
