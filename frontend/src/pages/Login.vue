@@ -14,6 +14,12 @@
       <button type="submit">Ingresar</button>
     </form>
 
+    <p v-if="errorMensaje" class="error">{{ errorMensaje }}</p>
+
+    <router-link v-if="!mostrarSelectorRol" class="link" to="/register">
+      Crear cuenta nueva
+    </router-link>
+
     <div v-else class="role-selector">
       <h3>Selecciona tu rol activo</h3>
       <select v-model="rolSeleccionado">
@@ -44,12 +50,40 @@ const mostrarSelectorRol = ref(false);
 const rolSeleccionado = ref('');
 const rolesDisponibles = ref<string[]>([]);
 
-const validarCredenciales = () => {
-  // Todo: Aqui ira la llamada real al backend (Dev A)
-  // Por ahora simulamos que el backend nos responde que el usuario es Docente y Estudiante
-  if (formulario.correo && formulario.contrasena) {
-    rolesDisponibles.value = ['Admin', 'Docente', 'Estudiante'];
+const errorMensaje = ref('');
+
+const validarCredenciales = async () => {
+  errorMensaje.value = '';
+
+  if (!formulario.correo || !formulario.contrasena) {
+    errorMensaje.value = 'Completa correo y contrasena.';
+    return;
+  }
+
+  try {
+    const respuesta = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        correo: formulario.correo.trim(),
+        contrasena: formulario.contrasena
+      })
+    });
+
+    const data = await respuesta.json();
+    if (!respuesta.ok) {
+      errorMensaje.value = data?.mensaje ?? 'Credenciales invalidas.';
+      return;
+    }
+
+    rolesDisponibles.value = data?.usuario?.roles ?? [];
+    if (!rolesDisponibles.value.length) {
+      errorMensaje.value = 'No se encontraron roles activos.';
+      return;
+    }
     mostrarSelectorRol.value = true;
+  } catch (err) {
+    errorMensaje.value = 'No se pudo conectar con el servidor.';
   }
 };
 
@@ -94,5 +128,14 @@ button {
 }
 button:disabled {
   background-color: #cccccc;
+}
+.error {
+  margin-top: 10px;
+  color: #b00020;
+}
+.link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #0056b3;
 }
 </style>
