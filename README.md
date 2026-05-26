@@ -98,25 +98,54 @@ es funcional y no genera redundancia porque solo hay claves foraneas.
 ## Diagramas
 ### Diagrama de casos de uso (general)
 ```mermaid
-flowchart LR
-  A[Estudiante] --> UC1((Registro))
-  A --> UC2((Login))
-  A --> UC6((Ver cursos))
-  A --> UC7((Ver calificaciones))
-  A --> UC10((Recibir notificaciones))
-  A --> UC12((Reportes alumno))
+usecaseDiagram
+  actor Estudiante
+  actor Docente
+  actor Administrador
 
-  D[Docente] --> UC2
-  D --> UC7
-  D --> UC10
-  D --> UC12
+  usecase UC1 as "RF01 Registro de usuarios con rol"
+  usecase UC2 as "RF02 Inicio de sesion y control por rol"
+  usecase UC3 as "RF03 Gestion de perfiles y cambio de contrasena"
+  usecase UC4 as "RF04 Gestion de cursos"
+  usecase UC5 as "RF05 Inscripcion a cursos sin duplicidad"
+  usecase UC6 as "RF06 Visualizacion de cursos por usuario"
+  usecase UC7 as "RF07 Registro y visualizacion de calificaciones"
+  usecase UC8 as "RF08 Dashboard por rol"
+  usecase UC9 as "RF09 Gestion de usuarios por administrador"
+  usecase UC10 as "RF10 Notificaciones"
+  usecase UC11 as "RF11 Cierre de sesion"
+  usecase UC12 as "RF12 Reportes PDF y Excel por rol"
 
-  M[Administrador] --> UC1
-  M --> UC2
-  M --> UC4((Gestion cursos))
-  M --> UC9((Gestion usuarios))
-  M --> UC10
-  M --> UC12
+  Estudiante --> UC1
+  Estudiante --> UC2
+  Estudiante --> UC3
+  Estudiante --> UC5
+  Estudiante --> UC6
+  Estudiante --> UC7
+  Estudiante --> UC8
+  Estudiante --> UC10
+  Estudiante --> UC11
+  Estudiante --> UC12
+
+  Docente --> UC2
+  Docente --> UC3
+  Docente --> UC6
+  Docente --> UC7
+  Docente --> UC8
+  Docente --> UC10
+  Docente --> UC11
+  Docente --> UC12
+
+  Administrador --> UC1
+  Administrador --> UC2
+  Administrador --> UC3
+  Administrador --> UC4
+  Administrador --> UC6
+  Administrador --> UC8
+  Administrador --> UC9
+  Administrador --> UC10
+  Administrador --> UC11
+  Administrador --> UC12
 ```
 
 ### Diagrama ER
@@ -216,20 +245,25 @@ erDiagram
 ```mermaid
 classDiagram
   class Usuario {
-    +id
-    +nombre
-    +apellido
-    +correo
+    +id : int
+    +nombre : string
+    +apellido : string
+    +correo : string
   }
   class Rol {
-    +nombre
+    +id : int
+    +nombre : string
   }
   class UsuarioRol {
-    +usuario_id
-    +rol_id
+    +usuario_id : int
+    +rol_id : int
+    +fecha_asignacion : datetime
+    +activo : boolean
   }
-  Usuario "1" -- "many" UsuarioRol
-  Rol "1" -- "many" UsuarioRol
+  Usuario "1" -- "0..*" UsuarioRol : tiene
+  Rol "1" -- "0..*" UsuarioRol : asigna
+  UsuarioRol "0..*" -- "1" Usuario : fk usuario_id
+  UsuarioRol "0..*" -- "1" Rol : fk rol_id
 ```
 
 ### Diagramas de secuencia
