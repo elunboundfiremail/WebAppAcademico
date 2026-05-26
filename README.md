@@ -34,6 +34,7 @@
 - RF12 Reportes PDF y Excel por rol.
 
 Nota importante: el alumno no registra notas, solo consulta sus calificaciones.
+Nota: se contempla roles multiples por usuario y seleccion de rol activo en login.
 
 ## Tecnologias usadas
 - Backend: Node.js + Express + TypeScript.
@@ -63,7 +64,9 @@ Arquitectura limpia con capas:
 
 ## Base de datos 
 ### Tablas principales
-- usuarios: id, nombre, apellido, correo, ci, password_hash, rol, telefono, activo, fecha_baja, creado_en
+- usuarios: id, nombre, apellido, correo, ci, password_hash, telefono, activo, fecha_baja, creado_en
+- roles: id, nombre
+- usuarios_roles: usuario_id, rol_id
 - carreras: id, nombre, descripcion, activo, fecha_baja
 - materias: id, carrera_id, codigo, nombre, descripcion, activo, fecha_baja
 - cursos: id, materia_id, docente_id, periodo, gestion, cupo, activo, fecha_baja
@@ -75,6 +78,8 @@ Arquitectura limpia con capas:
 ### Indices obligatorios
 - usuarios(correo) unique
 - usuarios(ci) unique
+- roles(nombre) unique
+- usuarios_roles(usuario_id, rol_id) unique
 - materias(codigo) unique
 - inscripciones(estudiante_id, curso_id) unique
 - calificaciones(inscripcion_id) unique
@@ -86,9 +91,9 @@ Arquitectura limpia con capas:
 - Trigger para validar cupo antes de inscribir.
 - Procedimientos para reportes RF12.
 
-Nota de diseno: se elimina la separacion en tablas estudiantes y docentes para evitar ciclos extra.
-Se usa solo usuarios con rol, y las relaciones apuntan a usuarios. El ciclo minimo
-usuarios -> cursos -> inscripciones es funcional y no genera redundancia.
+Nota de diseno: se usa roles multiples para un mismo usuario. Esto evita duplicar cuentas
+cuando una persona es docente y estudiante a la vez. El ciclo usuarios -> cursos -> inscripciones
+es funcional y no genera redundancia porque solo hay claves foraneas.
 
 ## Diagramas
 ### Diagrama de casos de uso (general)
@@ -117,6 +122,8 @@ flowchart LR
 ### Diagrama ER
 ```mermaid
 erDiagram
+  USUARIOS ||--o{ USUARIOS_ROLES : tiene
+  ROLES ||--o{ USUARIOS_ROLES : asigna
   CARRERAS ||--o{ MATERIAS : incluye
   MATERIAS ||--o{ CURSOS : ofrece
   USUARIOS ||--o{ CURSOS : dicta
@@ -133,12 +140,19 @@ erDiagram
     string correo
     string ci
     string password_hash
-    string rol
     boolean activo
+  }
+  ROLES {
+    int id
+    string nombre
+  }
+  USUARIOS_ROLES {
+    int usuario_id
+    int rol_id
   }
 ```
 
-### Diagrama de roles (usuarios)
+### Diagrama EER (usuarios y roles)
 ```mermaid
 classDiagram
   class Usuario {
@@ -146,8 +160,16 @@ classDiagram
     +nombre
     +apellido
     +correo
-    +rol: estudiante|docente|administrador
   }
+  class Rol {
+    +nombre
+  }
+  class UsuarioRol {
+    +usuario_id
+    +rol_id
+  }
+  Usuario "1" -- "many" UsuarioRol
+  Rol "1" -- "many" UsuarioRol
 ```
 
 ### Diagramas de secuencia
@@ -177,7 +199,7 @@ sequenceDiagram
   F->>A: POST /auth/login
   A->>BD: validar usuario
   BD-->>A: ok
-  A-->>F: token y rol
+  A-->>F: token y roles
   F-->>U: acceso por rol
 ```
 
