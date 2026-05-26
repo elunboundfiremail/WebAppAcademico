@@ -130,7 +130,7 @@ erDiagram
   CURSOS ||--o{ CURSO_HORARIOS : tiene
   USUARIOS ||--o{ INSCRIPCIONES : realiza
   CURSOS ||--o{ INSCRIPCIONES : recibe
-  INSCRIPCIONES ||--|| CALIFICACIONES : genera
+  INSCRIPCIONES ||--o| CALIFICACIONES : genera
   USUARIOS ||--o{ NOTIFICACIONES : recibe
 
   USUARIOS {
@@ -140,7 +140,10 @@ erDiagram
     string correo
     string ci
     string password_hash
+    string telefono
     boolean activo
+    date fecha_baja
+    datetime creado_en
   }
   ROLES {
     int id
@@ -149,6 +152,63 @@ erDiagram
   USUARIOS_ROLES {
     int usuario_id
     int rol_id
+  }
+  CARRERAS {
+    int id
+    string nombre
+    string descripcion
+    boolean activo
+    date fecha_baja
+  }
+  MATERIAS {
+    int id
+    int carrera_id
+    string codigo
+    string nombre
+    string descripcion
+    boolean activo
+    date fecha_baja
+  }
+  CURSOS {
+    int id
+    int materia_id
+    int docente_id
+    string periodo
+    string gestion
+    int cupo
+    boolean activo
+    date fecha_baja
+  }
+  CURSO_HORARIOS {
+    int id
+    int curso_id
+    string dia_semana
+    time hora_inicio
+    time hora_fin
+    string aula
+  }
+  INSCRIPCIONES {
+    int id
+    int estudiante_id
+    int curso_id
+    datetime fecha_inscripcion
+    string estado
+    boolean activo
+  }
+  CALIFICACIONES {
+    int id
+    int inscripcion_id
+    decimal nota
+    datetime fecha_registro
+    string observacion
+  }
+  NOTIFICACIONES {
+    int id
+    int usuario_id
+    string titulo
+    string mensaje
+    boolean leido
+    datetime creado_en
   }
 ```
 
