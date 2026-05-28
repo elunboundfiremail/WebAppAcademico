@@ -14,12 +14,12 @@ Backlog | Por hacer | En progreso | En revision | Hecho
 | Perfil y cambio de contrasena | Dev A (Jonathan) | 2026-05-28 | 2026-05-28 | Por hacer | [ ] |
 | Roles y cierre de sesion | Dev A (Jonathan) | 2026-05-29 | 2026-05-29 | Por hacer | [ ] |
 | Cursos (crear, editar, eliminar) | Dev C (Maik) | 2026-05-29 | 2026-05-29 | Hecho | [X] |
-| Inscripciones y validacion duplicidad | Dev C (Maik) | 2026-05-30 | 2026-05-30 | Por hacer | [ ] |
-| Calificaciones y dashboard | Dev C (Maik) | 2026-05-30 | 2026-05-30 | Por hacer | [ ] |
+| Inscripciones y validacion duplicidad | Dev C (Maik) | 2026-05-30 | 2026-05-30 | Hecho | [X] |
+| Calificaciones y dashboard | Dev C (Maik) | 2026-05-30 | 2026-05-30 | Por hacer | [X] |
 | Maquetacion UI y rutas base | Dev B (Diego) | 2026-05-27 | 2026-05-28 | Heho | [X] |
 | Integracion frontend con endpoints | Dev B (Diego) | 2026-05-30 | 2026-05-31 | Hecho | [X] |
 | Reportes PDF y Excel | Dev D (Cristian) | 2026-05-30 | 2026-05-31 | Hecho | [X] |
-| Reglas de solapamiento | Dev C (Maik) | 2026-05-31 | 2026-05-31 | Por hacer | [ ] |
+| Reglas de solapamiento | Dev C (Maik) | 2026-05-31 | 2026-05-31 | Hecho | [X] |
 | Notificaciones | Dev D (Cristian) | 2026-05-31 | 2026-05-31 | Por hacer | [ ] |
 | README y ejecucion local | Dev A (Jonathan) | 2026-06-01 | 2026-06-01 | Por hacer | [ ] |
 | Documento oficial | Dev D (Cristian) | 2026-06-01 | 2026-06-01 | Por hacer | [ ] |
