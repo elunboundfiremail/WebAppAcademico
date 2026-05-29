@@ -10,9 +10,9 @@ Backlog | Por hacer | En progreso | En revision | Hecho
 | Estructura base frontend (Vue 3 + TS) | Dev B (Diego) | 2026-05-26 | 2026-05-26 | Hecho | [X] |
 | Entidades y repositorios base | Dev C (Maik) | 2026-05-26 | 2026-05-26 | Hecho | [X] |
 | Estructura reportes RF12 | Dev D (Cristian) | 2026-05-26 | 2026-05-26 | Hecho | [X] |
-| Registro y login | Dev A (Jonathan) | 2026-05-27 | 2026-05-27 | Por hacer | [ ] |
-| Perfil y cambio de contrasena | Dev A (Jonathan) | 2026-05-28 | 2026-05-28 | Por hacer | [ ] |
-| Roles y cierre de sesion | Dev A (Jonathan) | 2026-05-29 | 2026-05-29 | Por hacer | [ ] |
+| Registro y login | Dev A (Jonathan) | 2026-05-27 | 2026-05-27 | Hecho | [X] |
+| Perfil y cambio de contrasena | Dev A (Jonathan) | 2026-05-28 | 2026-05-28 | Hecho | [X] |
+| Roles y cierre de sesion | Dev A (Jonathan) | 2026-05-29 | 2026-05-29 | Por hacer | [] |
 | Cursos (crear, editar, eliminar) | Dev C (Maik) | 2026-05-29 | 2026-05-29 | Hecho | [X] |
 | Inscripciones y validacion duplicidad | Dev C (Maik) | 2026-05-30 | 2026-05-30 | Hecho | [X] |
 | Calificaciones y dashboard | Dev C (Maik) | 2026-05-30 | 2026-05-30 | Por hacer | [X] |
